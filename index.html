@@ -19,9 +19,9 @@
     <script src="https://cdn.jsdelivr.net/npm/progressive-image.js/dist/progressive-image.js"></script>
     <script>
         let differedPrompt;
+        let installButton;
         this.addEventListener("load", function (_event) {
-            const installButton = document.getElementById("install_button");
-
+            installButton = document.getElementById("install_button");
             this.addEventListener("beforeinstallprompt", function (event) {
                 event.preventDefault();
                 differedPrompt = event;
@@ -30,6 +30,8 @@
             if (window.matchMedia('(display-mode: standalone)').matches) {
                 installButton.style.display = "none";
             }
+
+            installButton.addEventListener("click", promptInstall);
         });
 
         const promptInstall = (e) => {
@@ -50,7 +52,6 @@
             .catch(console.error);
         };
 
-        installButton.addEventListener("click", promptInstall);
     </script>
 </head>
 
