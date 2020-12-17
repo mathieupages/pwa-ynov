@@ -25,7 +25,7 @@ const ASSETS = [
     "/assets/imgs/pc.jpg",
     "/assets/imgs/plaine.jpg",
     "/assets/imgs/port.jpg",
-    "/assets/imgs/imageDictionnary.js",
+    "/assets/imgs/imageDictionary.js",
     "/assets/imgs/tiny/",
     "/assets/imgs/tiny/bordmer.jpg",
     "/assets/imgs/tiny/ecluse.jpg",
@@ -33,7 +33,7 @@ const ASSETS = [
     "/assets/imgs/tiny/pc.jpg",
     "/assets/imgs/tiny/plaine.jpg",
     "/assets/imgs/tiny/port.jpg",
-    "/assets/imgs/tiny/tinyImageDictionnary.js",
+    "/assets/imgs/tiny/tinyImageDictionary.js",
 ];
 this.addEventListener("install", function (event) {
     event.waitUntil(
@@ -49,17 +49,17 @@ this.addEventListener('fetch', function(event) {
         caches.match(event.request)
             .then(function(response) {
             if (response) {
-                return response;     // if valid response is found in cache return it
+                return response;
             } else {
-                return fetch(event.request)     //fetch from internet
+                return fetch(event.request)
                 .then(function(res) {
                     return caches.open(CACHE)
                     .then(function(cache) {
-                        cache.put(event.request.url, res.clone());    //save the response for future
-                        return res;   // return the fetched data
+                        cache.put(event.request.url, res.clone());
+                        return res;
                     })
                 })
-                .catch(function(err) {       // fallback mechanism
+                .catch(function(err) {
                     return caches.open(CACHE)
                     .then(function(cache) {
                         return cache.match('/offline.html');
