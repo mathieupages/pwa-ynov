@@ -6,15 +6,49 @@
     <meta charset="UTF-8">
     <meta name="description" content="A sandbox app around PWA">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="scripts/app.js"></script>
-    <link rel="manifest" href="manifest.json">
-    <script async src="https://cdn.jsdelivr.net/npm/pwacompat@2.0.9/pwacompat.min.js" integrity="sha384-VcI6S+HIsE80FVM1jgbd6WDFhzKYA0PecD/LcIyMQpT4fMJdijBh0I7Iblaacawc" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="manifest" href="manifest.json">
+    <script async src="https://cdn.jsdelivr.net/npm/pwacompat@2.0.9/pwacompat.min.js"
+        integrity="sha384-VcI6S+HIsE80FVM1jgbd6WDFhzKYA0PecD/LcIyMQpT4fMJdijBh0I7Iblaacawc" crossorigin="anonymous">
+    </script>
+    <script src="scripts/app.js"></script>
     <script src="assets/imgs/imageDictionary.js"></script>
     <script src="assets/imgs/tiny/tinyImageDictionary.js"></script>
     <script src="scripts/image.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/progressive-image.js/dist/progressive-image.css">
     <script src="https://cdn.jsdelivr.net/npm/progressive-image.js/dist/progressive-image.js"></script>
+    <script>
+        this.addEventListener("load", function (_event) {
+            const installButton = document.getElementById("install_button");
+
+            this.addEventListener("beforeinstallprompt", function (event) {
+                event.preventDefault();
+
+                installButton.addEventListener("click", (e) => {
+
+                    event.prompt();
+
+                    event.userChoice.then((choiceResult) => {
+                        if (choiceResult.outcome === "accepted") {
+                            console.log("User accepted the A2HS prompt");
+                            caches.open(CACHE)
+                                .then(function (cache) {
+                                    cache.put('isInstalled', true);
+                                })
+                                .catch(console.error);
+                        } else {
+                            console.log("User dismissed the A2HS prompt");
+                            installButton.style.display = "block";
+                        }
+                    });
+                });
+            });
+
+            if (window.matchMedia('(display-mode: standalone)').matches) {
+                installButton.style.display = "none";
+            }
+        });
+    </script>
 </head>
 
 <body>

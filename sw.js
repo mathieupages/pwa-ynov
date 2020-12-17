@@ -36,38 +36,6 @@ const ASSETS = [
     "/assets/imgs/tiny/tinyImageDictionary.js",
 ];
 
-this.addEventListener("load", function (_event) {
-    const installButton = document.getElementById("install_button");
-
-    this.addEventListener("beforeinstallprompt", function (event) {
-        event.preventDefault();
-
-        installButton.addEventListener("click", (e) => {
-
-            event.prompt();
-
-            event.userChoice.then((choiceResult) => {
-                if (choiceResult.outcome === "accepted") {
-                    console.log("User accepted the A2HS prompt");
-                    caches.open(CACHE)
-                        .then(function (cache) {
-                            cache.put('isInstalled', true);
-                        })
-                        .catch(console.error);
-                } else {
-                    console.log("User dismissed the A2HS prompt");
-                    installButton.style.display = "block";
-                }
-            });
-        });
-    });
-
-    if (window.matchMedia('(display-mode: standalone)').matches) {
-        installButton.style.display = "none";
-    }
-});
-
-
 this.addEventListener("install", function (event) {
     event.waitUntil(
         caches.open(CACHE).then(function (cache) {
