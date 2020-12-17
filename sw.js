@@ -36,7 +36,7 @@ const ASSETS = [
     "/assets/imgs/tiny/tinyImageDictionary.js",
 ];
 
-window.addEventListener("load", function (_event) {
+this.addEventListener("load", function (_event) {
     const installButton = document.getElementById("install_button");
 
     this.addEventListener("beforeinstallprompt", function (event) {
