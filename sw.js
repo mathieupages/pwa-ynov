@@ -38,6 +38,7 @@ this.addEventListener("install", function (event) {
                 "/assets/imgs/tiny/tinyImageDictionnary.js",
             ]);
         })
+        .catch(console.error)
     );
 });
 
