@@ -25,7 +25,6 @@
                 event.preventDefault();
 
                 installButton.addEventListener("click", (e) => {
-
                     installButton.disabled = true;
                     event.prompt();
                     event.userChoice.then((choiceResult) => {
@@ -36,7 +35,8 @@
                             console.log("User dismissed the A2HS prompt");
                             installButton.disabled = false;
                         }
-                    });
+                    })
+                    .catch(console.error);
                 });
             });
 
