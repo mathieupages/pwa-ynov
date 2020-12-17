@@ -35,6 +35,11 @@ const ASSETS = [
     "/assets/imgs/tiny/port.jpg",
     "/assets/imgs/tiny/tinyImageDictionary.js",
 ];
+
+this.addEventListener("beforeinstallprompt", e => {
+    
+});
+
 this.addEventListener("install", function (event) {
     event.waitUntil(
         caches.open(CACHE).then(function (cache) {
