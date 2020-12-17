@@ -46,10 +46,12 @@ this.addEventListener("install", function (event) {
 });
 
 this.addEventListener('fetch', function (event) {
-    console.log({
-        url: event.request.url,
-        request: event.request
-    });
+    console.log(
+        "Request : [%s] %s",
+        event.request.method,
+        event.request.url,
+    );
+
     event.respondWith(
         caches.match(event.request).then(function(response) {
             if (response) {

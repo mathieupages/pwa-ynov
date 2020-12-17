@@ -19,7 +19,7 @@ window.addEventListener("load", function (event) {
         event.preventDefault();
 
         installButton.addEventListener("click", (e) => {
-            installButton.style.display = "none";
+            
             event.prompt();
 
             event.userChoice.then((choiceResult) => {
@@ -27,8 +27,13 @@ window.addEventListener("load", function (event) {
                     console.log("User accepted the A2HS prompt");
                 } else {
                     console.log("User dismissed the A2HS prompt");
+                    installButton.style.display = "block";
                 }
             });
         });
     });
+    
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+        installButton.style.display = "none";
+    }
 });
