@@ -18,35 +18,38 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/progressive-image.js/dist/progressive-image.css">
     <script src="https://cdn.jsdelivr.net/npm/progressive-image.js/dist/progressive-image.js"></script>
     <script>
+        let differedPrompt;
         this.addEventListener("load", function (_event) {
             const installButton = document.getElementById("install_button");
 
             this.addEventListener("beforeinstallprompt", function (event) {
                 event.preventDefault();
-                const promptInstall = (e) => {
-                    installButton.disabled = true;
-                    event.prompt();
-                    event.userChoice.then((choiceResult) => {
-                        if (choiceResult.outcome === "accepted") {
-                            console.log("User accepted the A2HS prompt");
-                            installButton.style.display = "none";
-                        } else {
-                            console.log("User dismissed the A2HS prompt");
-                            installButton.disabled = false;
-                            installButton.removeEventListener("click");
-                            installButton.addEventListener("click", promptInstall);
-                        }
-                    })
-                    .catch(console.error);
-                };
-
-                installButton.addEventListener("click", promptInstall);
+                differedPrompt = event;
             });
 
             if (window.matchMedia('(display-mode: standalone)').matches) {
                 installButton.style.display = "none";
             }
         });
+
+        const promptInstall = (e) => {
+            installButton.disabled = true;
+            event.prompt();
+            event.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === "accepted") {
+                    console.log("User accepted the A2HS prompt");
+                    installButton.style.display = "none";
+                } else {
+                    console.log("User dismissed the A2HS prompt");
+                    installButton.disabled = false;
+                    installButton.removeEventListener("click");
+                    installButton.addEventListener("click", promptInstall);
+                }
+            })
+            .catch(console.error);
+        };
+
+        installButton.addEventListener("click", promptInstall);
     </script>
 </head>
 
