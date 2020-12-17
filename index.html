@@ -31,12 +31,7 @@
                     event.userChoice.then((choiceResult) => {
                         if (choiceResult.outcome === "accepted") {
                             console.log("User accepted the A2HS prompt");
-                            caches.open(CACHE)
-                                .then(function (cache) {
-                                    cache.put('isInstalled', true);
-                                    installButton.style.display = "none";
-                                })
-                                .catch(console.error);
+                            installButton.style.display = "none";
                         } else {
                             console.log("User dismissed the A2HS prompt");
                             installButton.disabled = false;
