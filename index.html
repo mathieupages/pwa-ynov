@@ -23,8 +23,7 @@
 
             this.addEventListener("beforeinstallprompt", function (event) {
                 event.preventDefault();
-
-                installButton.addEventListener("click", (e) => {
+                const promptInstall = (e) => {
                     installButton.disabled = true;
                     event.prompt();
                     event.userChoice.then((choiceResult) => {
@@ -34,10 +33,14 @@
                         } else {
                             console.log("User dismissed the A2HS prompt");
                             installButton.disabled = false;
+                            installButton.removeEventListener("click");
+                            installButton.addEventListener("click", promptInstall);
                         }
                     })
                     .catch(console.error);
-                });
+                };
+
+                installButton.addEventListener("click", promptInstall);
             });
 
             if (window.matchMedia('(display-mode: standalone)').matches) {
