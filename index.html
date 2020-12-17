@@ -26,19 +26,20 @@
 
                 installButton.addEventListener("click", (e) => {
 
+                    installButton.disabled = true;
                     event.prompt();
-
                     event.userChoice.then((choiceResult) => {
                         if (choiceResult.outcome === "accepted") {
                             console.log("User accepted the A2HS prompt");
                             caches.open(CACHE)
                                 .then(function (cache) {
                                     cache.put('isInstalled', true);
+                                    installButton.style.display = "none";
                                 })
                                 .catch(console.error);
                         } else {
                             console.log("User dismissed the A2HS prompt");
-                            installButton.style.display = "block";
+                            installButton.disabled = false;
                         }
                     });
                 });
