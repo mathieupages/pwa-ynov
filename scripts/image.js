@@ -18,7 +18,7 @@ window.onload = function () {
 					}
 				);
 
-				aElement.innerHTML = `<img src="${tinyImagePath[0]}" class="preview" loading="lazy" width="20" height="15"/>`
+				aElement.innerHTML = `<img src="${tinyImagePath[0]}" class="preview" loading="lazy" width="20" height="15" alt="preview"/>`
 				document.getElementById("gallery").appendChild(aElement);
 			})
 		})
