@@ -14,17 +14,17 @@ if ("serviceWorker" in navigator) {
 
 }
 
-window.addEventListener("onload", function (event) {
+window.addEventListener("load", function (event) {
     let deferredPrompt; // Allows to show the install prompt
     const installButton = document.getElementById("install_button");
-    
+
     window.addEventListener("beforeinstallprompt", function (event) {
         // Prevent Chrome 67 and earlier from automatically showing the prompt
         e.preventDefault();
         // Stash the event so it can be triggered later.
         deferredPrompt = e;
     });
-    
+
     // Installation must be done by a user gesture! Here, the button click
     installButton.addEventListener("click", (e) => {
         // hide our user interface that shows our A2HS button
