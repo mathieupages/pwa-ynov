@@ -1,0 +1,13 @@
+{
+  "name": "Gallery PWA",
+  "short_name": "Gallery PWA",
+  "start_url": "./?utm_source=web_app_manifest",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "assets/icons/logo.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    }
+  ]
+}

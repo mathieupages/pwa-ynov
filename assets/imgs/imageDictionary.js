@@ -1,6 +1,6 @@
 const BASE_PATH='assets/imgs/';
 
-const imagesPaths = [
+const imagePaths = [
     `${BASE_PATH}bordmer.jpg`,
     `${BASE_PATH}ecluse.jpg`,
     `${BASE_PATH}monte_perdido.jpg`,

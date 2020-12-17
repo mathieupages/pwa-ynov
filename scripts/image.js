@@ -1,25 +1,30 @@
 window.onload = function () {
-	imagesPaths.forEach(imagePath => {
-		const a = document.createElement("a");
+	Promise.resolve(imagePaths).then(resImagePaths => {
+			resImagePaths.forEach((imagePath, index) => {
+				const aElement = document.createElement("a");
 
-		a.classList.add("full");
-		a.classList.add("progressive");
-		a.classList.add("replace")
-		a.classList.add("gallery-image")
+				aElement.classList.add("full");
+				aElement.classList.add("progressive");
+				aElement.classList.add("replace")
+				aElement.classList.add("gallery-image")
 
-		a.setAttribute("href", imagePath);
+				aElement.setAttribute("href", imagePath);
 
-		const tinyImagePath = tinyImagesPaths.filter(
-			tinyPath => {
-				const splittedImagePath = imagePath.split('/');
-				var imageName = splittedImagePath[splittedImagePath.length - 1];
-				console.log(imageName);
-				return tinyPath.includes(imageName);
-			}
-		);
+				const tinyImagePath = tinyImagesPaths.filter(
+					tinyPath => {
+						const splittedImagePath = imagePath.split('/');
+						const imageName = splittedImagePath[splittedImagePath.length - 1];
+						return tinyPath.includes(imageName);
+					}
+				);
 
-		a.innerHTML = `<img src="${tinyImagePath[0]}" class="preview" loading="lazy" width="20" height="15" alt="squirrel" />`
-
-		document.getElementById("gallery").appendChild(a);
+				aElement.innerHTML = `<img src="${tinyImagePath[0]}" class="preview" loading="lazy" width="20" height="15"/>`
+				document.getElementById("gallery").appendChild(aElement);
+			})
+		})
+		.catch(err => {
+			const messageElement = document.createElement("p");
+			messageElement.innerText = err;
+			document.getElementById("gallery").appendChild(messageElement)
 	})
 };
