@@ -46,7 +46,7 @@ this.addEventListener('beforeinstallprompt', function(event) {
 });
 
   // Installation must be done by a user gesture! Here, the button click
-btnAdd.addEventListener('click', (e) => {
+// btnAdd.addEventListener('click', (e) => {
 // // hide our user interface that shows our A2HS button
 //     let deferredPrompt;
 //     btnAdd.style.display = 'none';
@@ -65,7 +65,7 @@ btnAdd.addEventListener('click', (e) => {
 //         .catch(console.error);
     // e.preventDefault();
     // e.prompt();
-});
+// });
 
 this.addEventListener("install", function (event) {
     event.waitUntil(
