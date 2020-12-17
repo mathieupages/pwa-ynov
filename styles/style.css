@@ -12,6 +12,13 @@ body {
     align-items: center;
 }
 
+.app-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
 #gallery {
     display: flex;
     width: 95%;
