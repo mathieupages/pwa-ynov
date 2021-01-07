@@ -83,7 +83,7 @@ self.addEventListener('activate', (e) => {
     caches.keys().then((keyList) => {
       return Promise.all(
         keyList.map((key) => {
-          if (cacheName.indexOf(key) === -1) {
+          if (CACHE.indexOf(key) === -1) {
             console.log('Clear cache : ', key);
             return caches.delete(key);
           }
