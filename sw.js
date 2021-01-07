@@ -2,7 +2,6 @@ const CACHE = 'gallery-v2';
 
 const ASSETS = [
   '/index.html',
-  '/offline.html',
   '/favicon.ico',
   '/styles/style.css',
   '/scripts/app.js',
@@ -29,7 +28,7 @@ const ASSETS = [
   '/assets/imgs/tiny/tinyImageDictionary.js',
 ];
 
-self.addEventListener('install', function (event) {
+self.addEventListener('install', event => {
   event.waitUntil(
     caches
       .open(CACHE)
@@ -40,7 +39,7 @@ self.addEventListener('install', function (event) {
   );
 });
 
-self.addEventListener('fetch', function (event) {
+self.addEventListener('fetch', event => {
   console.log('Request : [%s] %s', event.request.method, event.request.url);
 
   event.respondWith(
@@ -65,12 +64,12 @@ self.addEventListener('fetch', function (event) {
                 .catch(console.error);
             })
             .catch(function (err) {
-              return caches
-                .open(CACHE)
-                .then(function (cache) {
-                  return cache.match(event.request);
-                })
-                .catch(console.error);
+            //   return caches
+            //     .open(CACHE)
+            //     .then(function (cache) {
+            //       return cache.match(event.request);
+            //     })
+            //     .catch(console.error);
             });
         }
       })
