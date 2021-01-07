@@ -1,4 +1,4 @@
-const CACHE = 'gallery-v2';
+const CACHE = 'gallery-v3';
 
 const ASSETS = [
   '/index.html',
@@ -84,6 +84,7 @@ self.addEventListener('activate', (e) => {
       return Promise.all(
         keyList.map((key) => {
           if (cacheName.indexOf(key) === -1) {
+            console.log('Clear cache : ', key);
             return caches.delete(key);
           }
         })
