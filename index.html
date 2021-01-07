@@ -23,37 +23,35 @@
     />
     <script src="https://cdn.jsdelivr.net/npm/progressive-image.js/dist/progressive-image.js"></script>
     <script>
-        this.addEventListener('load', function (_event) {
-            window.addEventListener('beforeinstallprompt', (e) => {
-                e.preventDefault();
-                let deferredPrompt = e;
-                const btn = document.getElementById('install_button');
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        let deferredPrompt = e;
+        const btn = document.getElementById('install_button');
 
-                if (window.matchMedia('(display-mode: standalone)').matches) {
-                    btn.style.display = 'none';
+        if (window.matchMedia('(display-mode: standalone)').matches) {
+            btn.style.display = 'none';
+        } else {
+            btn.addEventListener('click', (e) => {
+              deferredPrompt.prompt();
+    
+              deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                  console.log('A2HS prompt accepted');
                 } else {
-                    btn.addEventListener('click', (e) => {
-                        deferredPrompt.prompt();
-                
-                        deferredPrompt.userChoice.then((choiceResult) => {
-                            if (choiceResult.outcome === 'accepted') {
-                            console.log('A2HS prompt accepted');
-                            } else {
-                            console.log('A2HS prompt declined');
-                            }
-                            deferredPrompt = null;
-                        });
-                    });
+                  console.log('A2HS prompt declined');
                 }
+                deferredPrompt = null;
+              });
             });
-        });
+        }
+      });
     </script>
   </head>
 
   <body>
     <div class="app-header">
       <h1>Sandbox PWA Ynov</h1>
-      <button id="install_button" type="button">Install</button>
+      <button id="install_button" type="button" value="Install">Install</button>
     </div>
     <div id="gallery"></div>
   </body>
