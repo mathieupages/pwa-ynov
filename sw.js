@@ -48,12 +48,13 @@ this.addEventListener('fetch', function (event) {
     event.respondWith(
         caches.match(event.request).then(function(response) {
             if (response) {
-                console.log("Response from cache :", response)
+                console.log("Response from cache :", response);
                 return response;
             } else {
+                console.log("Response not found in cache");
                 return fetch(event.request)
                     .then(function(res) {
-                        console.log("Response from web :", response)
+                        console.log("Response from web :", response);
                         return caches.open(CACHE)
                             .then(function(cache) {
                                 console.log("Response putted in the cache")
