@@ -26,10 +26,6 @@ body {
     text-align: center;
 }
 
-.hidden-message {
-    visibility: hidden;
-}
-
 #gallery {
     display: flex;
     width: 95%;
