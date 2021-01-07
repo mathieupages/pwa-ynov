@@ -9,67 +9,35 @@
     <link rel="apple-touch-icon" href="/assets/icons/icon192.png">
     <link rel="stylesheet" href="styles/style.css" />
     <link rel="manifest" href="manifest.json" />
+    <script>
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker
+                .register("../sw.js", {
+                    scope: "./"
+                })
+                .then(function (reg) {
+                    console.log("Registration succeeded. Scope is " + reg.scope);
+                })
+                .catch(function (error) {
+                    console.log("Registration failed with " + error);
+                });
+        }
+    </script>
+    <script src="scripts/app.js"></script>
+    <script src="assets/imgs/imageDictionary.js"></script>
+    <script src="assets/imgs/tiny/tinyImageDictionary.js"></script>
+    <script src="scripts/image.js"></script>
     <script
       async
       src="https://cdn.jsdelivr.net/npm/pwacompat@2.0.9/pwacompat.min.js"
       integrity="sha384-VcI6S+HIsE80FVM1jgbd6WDFhzKYA0PecD/LcIyMQpT4fMJdijBh0I7Iblaacawc"
       crossorigin="anonymous"
     ></script>
-    <script src="scripts/app.js"></script>
-    <script src="assets/imgs/imageDictionary.js"></script>
-    <script src="assets/imgs/tiny/tinyImageDictionary.js"></script>
-    <script src="scripts/image.js"></script>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/progressive-image.js/dist/progressive-image.css"
     />
     <script src="https://cdn.jsdelivr.net/npm/progressive-image.js/dist/progressive-image.js"></script>
-    <script>
-        window.addEventListener("load", (e) => {
-            if(navigator.onLine) {
-                const message = document.getElementById('offline-message');
-                message.style.visibility = "hidden";
-            }
-        });
-
-        window.addEventListener('online', event => { 
-            console.log("online");
-            const message = document.getElementById('offline-message');
-            message.style.visibility = "hidden";
-        });
-
-        window.addEventListener('offline', event => { 
-            console.log("offline");
-            const message = document.getElementById('offline-message');
-            message.style.visibility = "visible";
-        });
-
-        window.addEventListener('load', (e) => {
-            const btn = document.getElementById('install_button');
-            console.log("match media result :", window.matchMedia('(display-mode: standalone)'));   
-            if (window.matchMedia('(display-mode: standalone)').matches) {
-                btn.style.display = 'none';
-            }
-        });
-
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            let deferredPrompt = e;
-            const btn = document.getElementById('install_button');
-
-            btn.addEventListener('click', (e) => {
-                deferredPrompt.prompt();
-                deferredPrompt.userChoice.then((choiceResult) => {
-                    if (choiceResult.outcome === 'accepted') {
-                        console.log('A2HS prompt accepted');
-                    } else {
-                        console.log('A2HS prompt declined');
-                    }
-                    deferredPrompt = null;
-                });
-            }); 
-        });
-    </script>
   </head>
 
   <body>

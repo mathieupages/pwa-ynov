@@ -64,9 +64,13 @@ this.addEventListener('fetch', function (event) {
                             .catch(console.error)
                     })
                     .catch(function(err) {
+
                         return caches.open(CACHE)
                             .then(function(cache) {
-                                return cache.match('/offline.html');
+                                return cache.match(
+                                    event.request
+                                    //'/offline.html'
+                                );
                             })
                             .catch(console.error);
                     });
