@@ -67,10 +67,7 @@ this.addEventListener('fetch', function (event) {
 
                         return caches.open(CACHE)
                             .then(function(cache) {
-                                return cache.match(
-                                    event.request
-                                    //'/offline.html'
-                                );
+                                return cache.match(event.request);
                             })
                             .catch(console.error);
                     });

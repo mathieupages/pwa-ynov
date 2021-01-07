@@ -1,7 +1,9 @@
 window.addEventListener("load", (e) => {
+    const message = document.getElementById('offline-message');
     if(navigator.onLine) {
-        const message = document.getElementById('offline-message');
         message.style.visibility = "hidden";
+    } else {
+        message.style.visibility = "visible";
     }
 });
 
