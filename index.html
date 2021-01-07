@@ -17,8 +17,9 @@
               scope: './',
             })
             .then(function (reg) {
-              console.log('Registration succeeded. Scope is ' + reg.scope);
-              reg.onupdatefound = () => {
+              console.log('Registration succeeded. Scope is ' + reg.scope, reg);
+              reg.onupdatefound = (event) => {
+                console.log(event);
                 const installingWorker = reg.installing;
                 console.log("onupdatefound new worker : ", installingWorker);
                 installingWorker.onstatechange = () => {
