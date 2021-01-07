@@ -54,7 +54,7 @@ this.addEventListener('fetch', function (event) {
                 console.log("Response not found in cache");
                 return fetch(event.request)
                     .then(function(res) {
-                        console.log("Response from web :", response);
+                        console.log("Response from web :", res);
                         return caches.open(CACHE)
                             .then(function(cache) {
                                 console.log("Response putted in the cache")
