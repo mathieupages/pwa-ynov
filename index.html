@@ -11,36 +11,26 @@
     <link rel="manifest" href="manifest.json" />
     <script>
       if ('serviceWorker' in navigator) {
-        window.isUpdateAvailable = new Promise(function (resolve, reject) {
-          navigator.serviceWorker
-            .register('../sw.js' , {scope: './',})
-            .then(function (reg) {
-              console.log('Registration succeeded. Scope is ' + reg.scope, reg);
-              reg.onupdatefound = (event) => {
-                const installingWorker = reg.installing;
-                installingWorker.onstatechange = () => {
-                  switch (installingWorker.state) {
-                    case 'installed':
-                      if (navigator.serviceWorker.controller) {
-                        resolve(true);
-                      } else {
-                        resolve(false);
-                      }
-                      break;
-                  }
-                };
+        navigator.serviceWorker
+          .register('../sw.js' , {scope: './',})
+          .then(function (reg) {
+            console.log('Registration succeeded. Scope is ' + reg.scope, reg);
+            reg.onupdatefound = (event) => {
+              const installingWorker = reg.installing;
+              installingWorker.onstatechange = () => {
+                switch (installingWorker.state) {
+                  case 'installed':
+                    if (navigator.serviceWorker.controller) {
+                      document.getElementById('new-update-message').style.visibility = "visible";
+                    }
+                    break;
+                }
               };
-            })
-            .catch(function (error) {
-              console.log('Registration failed with ' + error);
-            });
-        });
-
-        window['isUpdateAvailable'].then((isAvailable) => {
-          if (isAvailable) {
-            document.getElementById('new-update-message').style.visibility = "visible";
-          }
-        });
+            };
+          })
+          .catch(function (error) {
+            console.log('Registration failed with ' + error);
+          });
       }
     </script>
     <script src="scripts/app.js"></script>
