@@ -31,7 +31,7 @@
                 message.style.visibility = "hidden";
             }
         });
-        
+
         window.addEventListener('online', event => { 
             console.log("online");
             const message = document.getElementById('offline-message');
@@ -79,7 +79,7 @@
     <div class="app-info">
         <button id="install_button" type="button" value="Install">Install</button>
         <h2>Your favorite gallery just updated to this second version !</h2>
-        <p id="offline-message">You're now in offline mode</p>
+        <p id="offline-message" style="visibility: hidden;">You're now in offline mode</p>
     </div>
     <div id="gallery"></div>
   </body>
