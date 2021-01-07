@@ -81,14 +81,15 @@ self.addEventListener('fetch', function (event) {
 self.addEventListener('activate', (e) => {
   e.waitUntil(
     caches.keys().then((keyList) => {
-      return Promise.all(
-        keyList.map((key) => {
-          if (CACHE.indexOf(key) === -1) {
-            console.log('Clear cache : ', key);
-            return caches.delete(key);
-          }
-        })
-      );
+        return Promise.all(
+            keyList.map((key) => {
+                console.log('Check key : ', key);
+                if (CACHE.indexOf(key) === -1) {
+                    console.log('Clear cache : ', key);
+                    return caches.delete(key);
+                }
+            })
+        );
     })
   );
 });
