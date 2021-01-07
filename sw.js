@@ -64,12 +64,12 @@ self.addEventListener('fetch', event => {
                 .catch(console.error);
             })
             .catch(function (err) {
-            //   return caches
-            //     .open(CACHE)
-            //     .then(function (cache) {
-            //       return cache.match(event.request);
-            //     })
-            //     .catch(console.error);
+              return caches
+                .open(CACHE)
+                .then(function (cache) {
+                  return cache.match(event.request);
+                })
+                .catch(console.error);
             });
         }
       })
