@@ -18,6 +18,11 @@ body {
     justify-content: center;
 }
 
+.app-info {
+    display: flex;
+    flex-direction: column;
+}
+
 #gallery {
     display: flex;
     width: 95%;
