@@ -17,20 +17,13 @@
             .then(function (reg) {
               console.log('Registration succeeded. Scope is ' + reg.scope, reg);
               reg.onupdatefound = (event) => {
-                console.log(event);
                 const installingWorker = reg.installing;
-                console.log("onupdatefound new worker : ", installingWorker);
                 installingWorker.onstatechange = () => {
-                  console.log("onstatechange new worker");
                   switch (installingWorker.state) {
                     case 'installed':
                       if (navigator.serviceWorker.controller) {
-                        // new update available
-                        console.log("update")
                         resolve(true);
                       } else {
-                        // no update available
-                        console.log("no update")
                         resolve(false);
                       }
                       break;
@@ -73,7 +66,7 @@
     </div>
     <div class="app-info">
       <button id="install_button" type="button" value="Install">Install</button>
-      <h2 id="new-update-message" style="visibility: hidden">Your favorite gallery just updated to this second version !</h2>
+      <h2 id="new-update-message" style="visibility: hidden">Your favorite gallery have a new version, Please reload !</h2>
       <p id="offline-message" style="visibility: hidden">
         You're now in offline mode
       </p>
