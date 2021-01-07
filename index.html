@@ -5,23 +5,51 @@
     <meta charset="UTF-8" />
     <meta name="description" content="A sandbox app around PWA" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#317EFB"/>
-    <link rel="apple-touch-icon" href="/assets/icons/icon192.png">
+    <meta name="theme-color" content="#317EFB" />
+    <link rel="apple-touch-icon" href="/assets/icons/icon192.png" />
     <link rel="stylesheet" href="styles/style.css" />
     <link rel="manifest" href="manifest.json" />
     <script>
-        if ("serviceWorker" in navigator) {
-            navigator.serviceWorker
-                .register("../sw.js", {
-                    scope: "./"
-                })
-                .then(function (reg) {
-                    console.log("Registration succeeded. Scope is " + reg.scope);
-                })
-                .catch(function (error) {
-                    console.log("Registration failed with " + error);
-                });
-        }
+      if ('serviceWorker' in navigator) {
+        window.isUpdateAvailable = new Promise(function (resolve, reject) {
+          navigator.serviceWorker
+            .register('../sw.js', {
+              scope: './',
+            })
+            .then(function (reg) {
+              console.log('Registration succeeded. Scope is ' + reg.scope);
+              reg.onupdatefound = () => {
+                const installingWorker = reg.installing;
+                console.log("onupdatefound new worker : ", installingWorker);
+                installingWorker.onstatechange = () => {
+                  console.log("onstatechange new worker");
+                  switch (installingWorker.state) {
+                    case 'installed':
+                      if (navigator.serviceWorker.controller) {
+                        // new update available
+                        console.log("update")
+                        resolve(true);
+                      } else {
+                        // no update available
+                        console.log("no update")
+                        resolve(false);
+                      }
+                      break;
+                  }
+                };
+              };
+            })
+            .catch(function (error) {
+              console.log('Registration failed with ' + error);
+            });
+        });
+
+        window['isUpdateAvailable'].then((isAvailable) => {
+          if (isAvailable) {
+            console.log("update available")
+          }
+        });
+      }
     </script>
     <script src="scripts/app.js"></script>
     <script src="assets/imgs/imageDictionary.js"></script>
@@ -45,9 +73,11 @@
       <h1>Sandbox PWA Ynov</h1>
     </div>
     <div class="app-info">
-        <button id="install_button" type="button" value="Install">Install</button>
-        <h2>Your favorite gallery just updated to this second version !</h2>
-        <p id="offline-message" style="visibility: hidden;">You're now in offline mode</p>
+      <button id="install_button" type="button" value="Install">Install</button>
+      <h2 id="new-update-message" style="visibility: hidden">Your favorite gallery just updated to this second version !</h2>
+      <p id="offline-message" style="visibility: hidden">
+        You're now in offline mode
+      </p>
     </div>
     <div id="gallery"></div>
   </body>
