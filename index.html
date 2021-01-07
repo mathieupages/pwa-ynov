@@ -13,9 +13,7 @@
       if ('serviceWorker' in navigator) {
         window.isUpdateAvailable = new Promise(function (resolve, reject) {
           navigator.serviceWorker
-            .register('../sw.js', {
-              scope: './',
-            })
+            .register('../sw.js' , {scope: './',})
             .then(function (reg) {
               console.log('Registration succeeded. Scope is ' + reg.scope, reg);
               reg.onupdatefound = (event) => {
