@@ -21,6 +21,7 @@
                 switch (installingWorker.state) {
                   case 'installed':
                     if (navigator.serviceWorker.controller) {
+                      console.log("update available");
                       document.getElementById('new-update-message').style.visibility = "visible";
                     }
                     break;
