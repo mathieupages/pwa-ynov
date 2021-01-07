@@ -1,4 +1,4 @@
-const CACHE = 'gallery-v3';
+const CACHE = 'gallery-v2';
 
 const ASSETS = [
   '/index.html',
