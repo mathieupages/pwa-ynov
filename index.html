@@ -25,6 +25,18 @@
     />
     <script src="https://cdn.jsdelivr.net/npm/progressive-image.js/dist/progressive-image.js"></script>
     <script>
+        window.addEventListener('online', event => { 
+            console.log("online");
+            const message = document.getElementById('offline-message');
+            message.style.visibility = "hidden";
+        });
+
+        window.addEventListener('offline', event => { 
+            console.log("offline");
+            const message = document.getElementById('offline-message');
+            message.style.visibility = "visible";
+        });
+
         window.addEventListener('load', (e) => {
             const btn = document.getElementById('install_button');
             console.log("match media result :", window.matchMedia('(display-mode: standalone)'));   
@@ -60,6 +72,7 @@
     <div class="app-info">
         <button id="install_button" type="button" value="Install">Install</button>
         <h2>Your favorite gallery just updated to this second version !</h2>
+        <p id="offline-message" class="hidden-message">You're now in offline mode</p>
     </div>
     <div id="gallery"></div>
   </body>
