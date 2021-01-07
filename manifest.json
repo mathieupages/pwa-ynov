@@ -1,7 +1,7 @@
 {
   "name": "Gallery PWA",
   "short_name": "Gallery PWA",
-  "start_url": "./?utm_source=web_app_manifest",
+  "start_url": "./",
   "display": "standalone",
   "icons": [
     {

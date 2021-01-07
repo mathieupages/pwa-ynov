@@ -25,6 +25,7 @@
     <script>
         window.addEventListener('load', (e) => {
             const btn = document.getElementById('install_button');
+            console.log("match media result :", window.matchMedia('(display-mode: standalone)'));   
             if (window.matchMedia('(display-mode: standalone)').matches) {
                 btn.style.display = 'none';
             }
@@ -54,6 +55,9 @@
     <div class="app-header">
       <h1>Sandbox PWA Ynov</h1>
       <button id="install_button" type="button" value="Install">Install</button>
+    </div>
+    <div class="app-update">
+        <h2>Your favorite gallery just updated to this second version !</h2>
     </div>
     <div id="gallery"></div>
   </body>
