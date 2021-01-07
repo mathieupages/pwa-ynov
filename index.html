@@ -38,7 +38,7 @@
 
         window['isUpdateAvailable'].then((isAvailable) => {
           if (isAvailable) {
-            console.log("update available")
+            document.getElementById('new-update-message').style.visibility = "visible";
           }
         });
       }
