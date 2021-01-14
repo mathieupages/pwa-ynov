@@ -52,3 +52,10 @@ body {
     height: auto;
     object-fit: scale-down;
 }
+
+.img-holder {position: relative;}
+.img-holder .img {
+    position: absolute;
+    bottom: 10px; /*your button position*/
+    right: 10px; /*your button position*/
+}

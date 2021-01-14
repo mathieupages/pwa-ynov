@@ -3,21 +3,21 @@ const copyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: {
-    app: './scripts/app.js',
-	image: './scripts/image.js',
-	sw: './sw.js'
+    app: './client/scripts/app.js',
+	image: './client/scripts/image.js',
+	sw: './client/sw.js'
   },
   plugins: [
     new HtmlWebpackPlugin({
-	  template: 'index.html',
-	  favicon: "./favicon.ico"
+	  template: './client/index.html',
+	  favicon: "./client/favicon.ico"
 	}),
 	new copyWebpackPlugin(
 		{
 			patterns: [
-				{ from: 'assets', to: 'assets'},
-				{ from: 'styles', to: 'styles'},
-				{ from: 'manifest.json', to: 'manifest.json'}
+				{ from: 'client/assets', to: 'assets'},
+				{ from: 'client/styles', to: 'styles'},
+				{ from: 'client/manifest.json', to: 'manifest.json'}
 			]	
 		},
 	)

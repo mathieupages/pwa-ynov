@@ -8,3 +8,4 @@ const imagePaths = [
     `${BASE_PATH}plaine.jpg`,
     `${BASE_PATH}port.jpg`,
 ];
+console.log(imagePaths);

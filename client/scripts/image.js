@@ -5,8 +5,7 @@ window.onload = function () {
 
 				aElement.classList.add("full");
 				aElement.classList.add("progressive");
-				aElement.classList.add("replace")
-				aElement.classList.add("gallery-image")
+				aElement.classList.add("replace");
 
 				aElement.setAttribute("href", imagePath);
 
@@ -19,7 +18,22 @@ window.onload = function () {
 				);
 
 				aElement.innerHTML = `<img src="${tinyImagePath[0]}" class="preview" loading="lazy" width="20" height="15" alt="preview"/>`
-				document.getElementById("gallery").appendChild(aElement);
+
+				const likeButton = document.createElement('button');
+				likeButton.innerHTML = '♡';
+				likeButton.classList.add("img");
+
+				const galleryImage = document.createElement('div');
+				galleryImage.classList.add("gallery-image")
+				const imgHolder = document.createElement('div');
+				imgHolder.classList.add("img-holder");
+				
+				imgHolder.append(aElement);
+				imgHolder.append(likeButton);
+
+				galleryImage.append(imgHolder);
+
+				document.getElementById("gallery").appendChild(galleryImage);
 			})
 		})
 		.catch(err => {

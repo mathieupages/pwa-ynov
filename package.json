@@ -28,6 +28,7 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
-    "babel-loader": "^8.2.2"
+    "babel-loader": "^8.2.2",
+    "express": "^4.17.1"
   }
 }
