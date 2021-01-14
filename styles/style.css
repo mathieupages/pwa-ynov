@@ -13,6 +13,7 @@ body {
 }
 
 .app-header {
+    max-height: 20%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -29,7 +30,7 @@ body {
 #gallery {
     display: flex;
     width: 95%;
-    height: 85%;
+    max-height: 70%;
     flex-flow: row wrap;
     overflow-y: scroll;
     -ms-overflow-style: none;  /* IE and Edge */

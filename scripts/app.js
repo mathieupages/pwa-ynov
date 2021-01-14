@@ -1,20 +1,20 @@
 window.addEventListener("load", (e) => {
     const message = document.getElementById('offline-message');
     if(navigator.onLine) {
-        message.style.visibility = "hidden";
+        message.style.display = "none";
     } else {
-        message.style.visibility = "visible";
+        message.style.display = "block";
     }
 });
 
 window.addEventListener('online', event => { 
     console.log("online");
-    document.getElementById('offline-message').style.visibility = "hidden";
+    document.getElementById('offline-message').style.display = "none";
 });
 
 window.addEventListener('offline', event => { 
     console.log("offline");
-    document.getElementById('offline-message').style.visibility = "visible";
+    document.getElementById('offline-message').style.display = "block";
 });
 
 window.addEventListener('load', (e) => {
