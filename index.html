@@ -22,7 +22,7 @@
                   case 'installed':
                     if (navigator.serviceWorker.controller) {
                       console.log("update available");
-                      document.getElementById('new-update-message').style.visibility = "visible";
+                      document.getElementById('new-update-message').style.display = "block";
                     }
                     break;
                 }
@@ -57,8 +57,8 @@
     </div>
     <div class="app-info">
       <button id="install_button" type="button" value="Install">Install</button>
-      <h2 id="new-update-message" style="visibility: hidden">Your favorite gallery have a new version, Please reload !</h2>
-      <p id="offline-message" style="visibility: hidden">
+      <h2 id="new-update-message" style="display: none">Your favorite gallery have a new version, Please reload !</h2>
+      <p id="offline-message" style="display: none">
         You're now in offline mode
       </p>
     </div>
