@@ -1,4 +1,4 @@
-import { response } from "express";
+//import { response } from "express";
 
 window.onload = function () {
 	Promise.resolve(imagePaths).then(resImagePaths => {
