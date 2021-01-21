@@ -33,6 +33,17 @@
             console.log('Registration failed with ' + error);
           });
       }
+      if ('Notification' in window) { 
+        if (Notification.permission === "granted") {
+           const notification = new Notification("Ma Seconde Notification"); 
+          } else if (Notification.permission !== "denied") {
+             Notification.requestPermission(permission => {
+                if (permission === "granted") { 
+                  const notification = new Notification("Ma Première Notification"); 
+                } 
+              }); 
+            } 
+      }
     </script>
     <script src="scripts/app.js"></script>
     <script src="assets/imgs/imageDictionary.js"></script>

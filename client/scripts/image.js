@@ -1,5 +1,3 @@
-//import { response } from "express";
-
 window.onload = function () {
 	Promise.resolve(imagePaths).then(resImagePaths => {
 			resImagePaths.forEach((imagePath, index) => {
@@ -24,8 +22,8 @@ window.onload = function () {
 				const likeButton = document.createElement('button');
 				likeButton.innerHTML = '♡';
 				likeButton.classList.add("img");
-				// likeButton.setAttribute("id", `${tinyImagePath[0]}`);
-				likeButton.id = `${tinyImagePath[0]}`
+				likeButton.setAttribute("id", `${tinyImagePath[0]}`);
+
 				const galleryImage = document.createElement('div');
 				galleryImage.classList.add("gallery-image")
 				const imgHolder = document.createElement('div');
@@ -37,6 +35,15 @@ window.onload = function () {
 				galleryImage.append(imgHolder);
 
 				document.getElementById("gallery").appendChild(galleryImage);
+
+				document.getElementById("souscriptionButton").addEventListener("click", event => {
+					swRegistration.pushManager.subscribe(
+						{
+							userVisibleOnly: true,
+							applicationServerKey: urlB64ToUint8Array(publicVapidKey)
+						}
+					).then(subscription => { storeSubscription(subscription); });
+				})
 
 				let like = document.getElementById(`${tinyImagePath[0]}`);
 
