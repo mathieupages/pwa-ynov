@@ -92,3 +92,9 @@ self.addEventListener('activate', (e) => {
     })
   );
 });
+
+self.addEventListener("push", event => { 
+  self.registration.showNotification('Nouveau message!', {
+      body: 'Contenu du message'
+    });
+});

@@ -1,3 +1,5 @@
+const { response } = require("express");
+
 window.onload = function () {
 	Promise.resolve(imagePaths).then(resImagePaths => {
 			resImagePaths.forEach((imagePath, index) => {
@@ -22,6 +24,7 @@ window.onload = function () {
 				const likeButton = document.createElement('button');
 				likeButton.innerHTML = '♡';
 				likeButton.classList.add("img");
+				likeButton.setAttribute("id", `${tinyImagePath[0]}`);
 
 				const galleryImage = document.createElement('div');
 				galleryImage.classList.add("gallery-image")
@@ -34,6 +37,13 @@ window.onload = function () {
 				galleryImage.append(imgHolder);
 
 				document.getElementById("gallery").appendChild(galleryImage);
+
+				let like = document.getElementById(`${tinyImagePath[0]}`);
+
+				like.addEventListener("click", () =>{
+					fetch("https://mystifying-pare-646d2d.netlify.app/favorite" + `${tinyImagePath[0]}` )
+					.then((response) => console.log(response))
+				})
 			})
 		})
 		.catch(err => {
