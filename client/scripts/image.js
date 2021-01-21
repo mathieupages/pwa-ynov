@@ -24,10 +24,8 @@ window.onload = function () {
 				const likeButton = document.createElement('button');
 				likeButton.innerHTML = '♡';
 				likeButton.classList.add("img");
-				likeButton.setAttribute("id", `${tinyImagePath[0]}`);
-				likeButton.setAttribute("test", "test");
-
-
+				// likeButton.setAttribute("id", `${tinyImagePath[0]}`);
+				likeButton.id = `${tinyImagePath[0]}`
 				const galleryImage = document.createElement('div');
 				galleryImage.classList.add("gallery-image")
 				const imgHolder = document.createElement('div');
