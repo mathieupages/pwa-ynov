@@ -1,4 +1,4 @@
-const { response } = require("express");
+import { response } from "express";
 
 window.onload = function () {
 	Promise.resolve(imagePaths).then(resImagePaths => {
@@ -43,7 +43,7 @@ window.onload = function () {
 				let like = document.getElementById(`${tinyImagePath[0]}`);
 
 				like.addEventListener("click", () =>{
-					fetch("https://mystifying-pare-646d2d.netlify.app/favorite" + `${tinyImagePath[0]}` )
+					fetch("localhost:3000/favorite" + `${tinyImagePath[0]}` )
 					.then((response) => console.log(response))
 				})
 			})
