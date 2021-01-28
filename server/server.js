@@ -26,6 +26,12 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
 });
 
+app.get('/paths', (req, res) => {
+    const data = JSON.stringify(jsonData.map(image => image.src));
+    console.log(data);
+    res.send(data).end();
+});
+
 app.get('/images', (req, res) => {
     res.json(jsonData).end();
 });
