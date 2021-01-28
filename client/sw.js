@@ -1,9 +1,11 @@
-const CACHE = 'gallery-v2';
+const CACHE = 'gallery-v3';
 
 const ASSETS = [
   '/index.html',
   '/favicon.ico',
   '/styles/style.css',
+  '/scripts/utils.js',
+  '/scripts/notifications.js',
   '/scripts/app.js',
   '/scripts/image.js',
   '/assets/icons/icon48.png',
@@ -12,19 +14,6 @@ const ASSETS = [
   '/assets/icons/icon144.png',
   '/assets/icons/icon168.png',
   '/assets/icons/icon192.png',
-  '/assets/imgs/bordmer.jpg',
-  '/assets/imgs/ecluse.jpg',
-  '/assets/imgs/monte_perdido.jpg',
-  '/assets/imgs/pc.jpg',
-  '/assets/imgs/plaine.jpg',
-  '/assets/imgs/port.jpg',
-  '/assets/imgs/imageDictionary.js',
-  '/assets/imgs/tiny/bordmer.jpg',
-  '/assets/imgs/tiny/ecluse.jpg',
-  '/assets/imgs/tiny/monte_perdido.jpg',
-  '/assets/imgs/tiny/pc.jpg',
-  '/assets/imgs/tiny/plaine.jpg',
-  '/assets/imgs/tiny/port.jpg',
   '/assets/imgs/tiny/tinyImageDictionary.js',
 ];
 
@@ -35,7 +24,7 @@ self.addEventListener('install', event => {
       .then(function (cache) {
         return cache.addAll(ASSETS);
       })
-      .catch(console.error)
+      .catch(_err => {})
   );
 });
 
