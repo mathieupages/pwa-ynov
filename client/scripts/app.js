@@ -41,9 +41,9 @@ function requestGrantBackgroundSync() {
       console.log(status);
       if(status.state === 'granted'){
         swRegistration.sync.register('sync-image')
-        } 
-      })
-      .catch(console.error);
+      } 
+    })
+    .catch(console.error);
   })
 }
 

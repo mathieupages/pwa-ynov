@@ -64,9 +64,7 @@ function makeImageHolder(imagePath) {
 function addUrlSubmitButtonEvent(){
 	const submit = document.getElementById("subbtn");
 
-	submit.addEventListener("click", () => {
-		
-		
+	submit.addEventListener('click', () => {
 		const myInput = document.getElementById("name").value;
 	
 		var req = new XMLHttpRequest();
