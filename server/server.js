@@ -42,7 +42,12 @@ app.get('/favorite', (req, res) => {
 
     res.end();
 });
-
+app.post('/add', (req,res) => {
+  const img = req.body;
+  jsonData.push({id : jsonData.length +1, src : img});
+  console.log("TOTO " + jsonData.toString);
+  res.end();
+});
 app.use(function(err, req, res, next) {
     console.error(err);
     if(err.message)

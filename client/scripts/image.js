@@ -69,13 +69,16 @@ window.onload = function () {
 
 	submit.addEventListener("click", () => {
 		
-		try{
-			const myInput = document.getElementById("name").value;
-			alert(myInput);
-			fetch(myInput);
-		}catch(error){
-			console.log(error);
-		}
+		
+		const myInput = document.getElementById("name").value;
+		alert(myInput);
+		var req = new XMLHttpRequest();
+		
+		req.open('POST', "http://localhost:3000/add", true);
+		req.setRequestHeader("Access-Control-Allow-Headers","no-cors");
+		req.send(myInput);
+			
+		
 	})
 
 
