@@ -22,6 +22,7 @@ window.onload = function () {
 				const likeButton = document.createElement('button');
 				likeButton.innerHTML = '♡';
 				likeButton.classList.add("img");
+				likeButton.setAttribute("id", `${tinyImagePath[0]}`);
 
 				const galleryImage = document.createElement('div');
 				galleryImage.classList.add("gallery-image")
@@ -34,6 +35,26 @@ window.onload = function () {
 				galleryImage.append(imgHolder);
 
 				document.getElementById("gallery").appendChild(galleryImage);
+
+				likeButton.addEventListener("click", () => {
+					fetch(`http://localhost:3000/favorite?image=${encodeURIComponent(tinyImagePath[0])}` )
+					.then((response) => {
+						console.log(response);
+						navigator.serviceWorker.ready.then(
+							(serviceWorkerRegistration) => {
+								serviceWorkerRegistration.pushManager.subscribe(
+									{
+										userVisibleOnly: true,
+										applicationServerKey: "BOz-y7a0En0i6slG6L-jMR6EmwTel18PAO8CLX0ECOIWeNGYo3DKXdMwN0LrmpulqE1CKl6VUMCQRW9-_7iXU8Y"//urlB64ToUint8Array(publicVapidKey)
+									}
+								).then(_subscription => { 
+									// storeSubscription(subscription); 
+								});
+							}
+						);
+					})
+					.catch(console.error);
+				})
 			})
 		})
 		.catch(err => {

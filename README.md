@@ -4,6 +4,11 @@
 
 A sandbox repository during WebMobile class given in Ynov Toulouse Campus
 
+## Team 
+
+- [Jason Liebault](https://github.com/JasLieb)
+- [Mathieu Pages](https://github.com/mathieupages)
+
 ## Setup
 
 - `npm install`
@@ -19,3 +24,13 @@ A sandbox repository during WebMobile class given in Ynov Toulouse Campus
 - write something new and push it
 - show deploy from your netlify address (also available from your main pageof the forker git repo)
 - Ask a PR to the [main branch of the main project](https://github.com/JasLieb/pwa-ynov) to push your contribution
+
+## Team forked projects and deployments links  
+
+- Jason Liebault :
+
+    [git](https://github.com/jaslieb/pwa-ynov) | [deploy](https://mystifying-pare-646d2d.netlify.app/)
+
+- Mathieu Pages :  
+
+    [git](https://github.com/mathieupages/pwa-ynov) | [deploy](https://elated-curran-5dab22.netlify.app/)

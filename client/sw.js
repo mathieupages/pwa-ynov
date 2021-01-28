@@ -92,3 +92,18 @@ self.addEventListener('activate', (e) => {
     })
   );
 });
+
+self.addEventListener("push", (event) => {
+    const pushData = event.data.json();
+    event.waitUntil(
+        self.registration.showNotification("PWA", {
+            body: pushData.Summary,
+            dir: "ltr",
+            tag: "PWA",
+            icon: "/images/pc.jpg",
+            badge: "/images/pc.jpg",
+            image: pushData.TitleImage,
+            data: pushData
+        })
+    );
+});

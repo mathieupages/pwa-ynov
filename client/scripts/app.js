@@ -1,3 +1,5 @@
+const publicVapidKey = "BOz-y7a0En0i6slG6L-jMR6EmwTel18PAO8CLX0ECOIWeNGYo3DKXdMwN0LrmpulqE1CKl6VUMCQRW9-_7iXU8Y";
+
 window.addEventListener("load", (e) => {
     const message = document.getElementById('offline-message');
     if(navigator.onLine) {
@@ -22,6 +24,28 @@ window.addEventListener('load', (e) => {
     if (window.matchMedia('(display-mode: standalone)').matches) {
         document.getElementById('install_button').style.display = 'none';
     }
+    // Use serviceWorker.ready to ensure that you can subscribe for push
+    navigator.serviceWorker.ready.then(
+        (serviceWorkerRegistration) => {
+            var options = {
+                userVisibleOnly: true,
+                applicationServerKey: publicVapidKey
+            };
+            serviceWorkerRegistration.pushManager.subscribe(options).then(
+                function (pushSubscription) {
+                    console.log(pushSubscription.endpoint);
+                    // The push subscription details needed by the application
+                    // server are now available, and can be sent to it using,
+                    // for example, an XMLHttpRequest.
+                }).catch(function (error) {
+                    // During development it often helps to log errors to the
+                    // console. In a production environment it might make sense to
+                    // also report information about errors back to the
+                    // application server.
+                    console.log(error);
+                }
+            );
+        });
 });
 
 window.addEventListener('beforeinstallprompt', (e) => {
