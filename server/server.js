@@ -5,12 +5,13 @@ const bodyParser = require("body-parser");
 const path = require("path");
 var cors = require('cors')
 let jsonData = require('./imageData.json');
+let subs = [];
 
 app.use(cors());
-//app.use(express.static(path.join(__dirname, "client")));
+app.use(bodyParser.json())
 
-const publicVapidKey = "BOz-y7a0En0i6slG6L - jMR6EmwTel18PAO8CLX0ECOIWeNGYo3DKXdMwN0LrmpulqE1CKl6VUMCQRW9 - _7iXU8Y"
-const privateVapidKey = "rUBLUV3xcpIaMj91cTb66xBO-ljVo6u1piFOcZAGisg"
+const publicVapidKey = "BOz-y7a0En0i6slG6L-jMR6EmwTel18PAO8CLX0ECOIWeNGYo3DKXdMwN0LrmpulqE1CKl6VUMCQRW9-_7iXU8Y";
+const privateVapidKey = "rUBLUV3xcpIaMj91cTb66xBO-ljVo6u1piFOcZAGisg";
 
 webpush.setVapidDetails(
     "mailto:mathieu.pages@ynov.com",
@@ -29,16 +30,29 @@ app.get('/images', (req, res) => {
     res.json(jsonData).end();
 });
 
+app.post('/sub', (req, res) => {
+    console.log(req.body);
+    const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    subs.push({ip, sub: req.body});
+    res.end();
+});
+
 app.get('/favorite', (req, res) => {
     const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
     
-    const payload = JSON.stringify({ title: "Push Test" });
     const favorite = req.query.image;
-    console.log(`${ip} fall in love :`, favorite);
+    const payload = JSON.stringify({ title: `${ip} fall in love : ${favorite}` });
+    console.log(payload);
 
-    // webpush
-    //     .sendNotification(favorite, payload)
-    //     .catch(err => console.error(err));
+    const getSubscription = (ip)=> {
+        return subs.filter(sub => sub.ip == ip)[0];
+    };
+
+    const pushSubscription = getSubscription(ip);
+
+    webpush
+        .sendNotification(pushSubscription.sub, payload)
+        .catch(err => console.error(err));
 
     res.end();
 });
