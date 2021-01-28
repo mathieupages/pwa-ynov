@@ -61,11 +61,12 @@ function makeImageHolder(imagePath) {
   imgHolder.append(likeButton);
   return imgHolder;
 }
+
 function addUrlSubmitButtonEvent(){
 	const submit = document.getElementById("subbtn");
 
 	submit.addEventListener('click', () => {
-		const myInput = document.getElementById("name").value;
+		const myInput = document.getElementById("url").value;
 	
 		var req = new XMLHttpRequest();
 		
