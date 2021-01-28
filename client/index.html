@@ -25,19 +25,23 @@
   <script src="https://cdn.jsdelivr.net/npm/progressive-image.js/dist/progressive-image.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.7.3/localforage.min.js"></script>
 </head>
-
-<body>
-  <div class="app-header">
-    <h1>Sandbox PWA Ynov</h1>
-  </div>
-  <div class="app-info">
-    <button id="install_button" type="button" value="Install">Install</button>
-    <h2 id="new-update-message" style="display: none">Your favorite gallery have a new version, Please reload !</h2>
-    <p id="offline-message" style="display: none">
-      You're now in offline mode
-    </p>
-  </div>
-  <div id="gallery"></div>
-</body>
-
+  <body>
+    <div class="app-header">
+      <h1>Sandbox PWA Ynov</h1>
+    </div>
+    <div class="app-info">
+      <button id="install_button" type="button" value="Install">Install</button>
+      <h2 id="new-update-message" style="display: none">Your favorite gallery have a new version, Please reload !</h2>
+      <p id="offline-message" style="display: none">
+        You're now in offline mode
+      </p>
+    </div>
+    <div id="gallery"></div>
+    <div id="dlimg">
+      
+        <input type="text" id="name" name="name">
+        <button type="button" id="subbtn" value="téléchargement à partir de l'url" ></button>
+      
+    </div>
+  </body>
 </html>

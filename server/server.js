@@ -65,7 +65,14 @@ app.get('/favorite', (req, res) => {
 
     res.end();
 });
-
+app.post('/add', (req,res) => {
+    console.log("toto ",req.body);
+  const src = req.body.src;
+  console.log("tata ",src);
+  jsonData.push({id : `${jsonData.length +1}`, src});
+  console.log("TOTO " , jsonData);
+  res.end();
+});
 app.use(function(err, req, res, next) {
     console.error(err);
     if(err.message)
