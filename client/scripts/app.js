@@ -25,12 +25,19 @@ function initServiceWorker() {
 }
 
 function initBroadcastChannel() {
-  const broadcast = new BroadcastChannel('channel-sync-image'); 
+  const broadcast = new BroadcastChannel('channel-sw'); 
   broadcast.onmessage = (event) => {
     if (event.data && event.data.type === 'IMAGE_UPDATE') {
-      console.log(event)
-      // initGallery();
+      initGallery();
       console.log("hello")
+    }
+    if (event.data && event.data.type === 'SW_READY') {
+      initGallery();
+      toggleInstallButton();
+      toggleOfflineMessage(!navigator.onLine);
+      requestGrantNotification();
+      addLoveWithPictureSubscription();
+      addUrlSubmitButtonEvent();
     }
   }
 }
@@ -67,13 +74,13 @@ function toggleInstallButton() {
 window.addEventListener('load', (e) => {
   initServiceWorker();
   initBroadcastChannel();
-  console.log("hello")
-  initGallery();
-  toggleInstallButton();
-  toggleOfflineMessage(!navigator.onLine);
-  requestGrantNotification();
-  addLoveWithPictureSubscription();
-  addUrlSubmitButtonEvent();
+  // console.log("hello")
+  // initGallery();
+  // toggleInstallButton();
+  // toggleOfflineMessage(!navigator.onLine);
+  // requestGrantNotification();
+  // addLoveWithPictureSubscription();
+  // addUrlSubmitButtonEvent();
 });
 
 window.addEventListener('beforeinstallprompt', (e) => {

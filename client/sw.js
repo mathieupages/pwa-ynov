@@ -17,7 +17,7 @@ const ASSETS = [
   '/assets/imgs/tiny/tinyImageDictionary.js',
 ];
 
-const broadcast = new BroadcastChannel('channel-sync-image'); 
+const broadcast = new BroadcastChannel('channel-sw'); 
 
 self.addEventListener('install', event => {
   const cacheAssets = () =>
@@ -88,6 +88,8 @@ self.addEventListener('activate', (e) => {
   e.waitUntil(
     cleanObsoleteCache()
   );
+  
+  broadcast.postMessage({ type: 'SW_READY' }); 
 });
 
 self.addEventListener('sync', function (event) {
