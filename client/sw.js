@@ -18,13 +18,16 @@ const ASSETS = [
 ];
 
 self.addEventListener('install', event => {
-  event.waitUntil(
+  const cacheAssets = 
     caches
       .open(CACHE)
       .then(function (cache) {
         return cache.addAll(ASSETS);
       })
-      .catch(_err => {})
+      .catch(_err => { });
+
+  event.waitUntil(
+    cacheAssets()
   );
 });
 
@@ -67,32 +70,20 @@ self.addEventListener('fetch', event => {
 });
 
 self.addEventListener('activate', (e) => {
-  e.waitUntil(
+  const cleanObsoleteCache = () =>
     caches.keys().then((keyList) => {
-        return Promise.all(
-            keyList.map((key) => {
-                console.log('Check key : ', key);
-                if (CACHE.indexOf(key) === -1) {
-                    console.log('Clear cache : ', key);
-                    return caches.delete(key);
-                }
-            })
-        );
-    })
-  );
-});
-
-self.addEventListener("push", (event) => {
-    const pushData = event.data.json();
-    event.waitUntil(
-        self.registration.showNotification("PWA", {
-            body: pushData.Summary,
-            dir: "ltr",
-            tag: "PWA",
-            icon: "/images/pc.jpg",
-            badge: "/images/pc.jpg",
-            image: pushData.TitleImage,
-            data: pushData
+      return Promise.all(
+        keyList.map((key) => {
+          console.log('Check key : ', key);
+          if (CACHE.indexOf(key) === -1) {
+            console.log('Clear cache : ', key);
+            return caches.delete(key);
+          }
         })
-    );
+      );
+    });
+
+  e.waitUntil(
+    cleanObsoleteCache()
+  );
 });

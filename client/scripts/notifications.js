@@ -6,6 +6,18 @@ const loveWithPictureOptions = {
   userVisibleOnly: true,
 };
 
+function makeNotification(message) {
+    navigator.serviceWorker.ready.then( (serviceWorkerRegistration) => {
+        serviceWorkerRegistration.showNotification(
+            message, 
+            {
+                tag: "PWA",
+                icon: "/assets/icons/icon192.png"
+            }
+        );
+    })
+}
+
 function addLoveWithPictureSubscription() {
   navigator.serviceWorker.ready.then(async (serviceWorkerRegistration) => {
     const subscription = await serviceWorkerRegistration.pushManager.subscribe(
@@ -22,11 +34,12 @@ function addLoveWithPictureSubscription() {
 function requestGrantNotification() {
   if ('Notification' in window) {
     if (Notification.permission === 'granted') {
-      const notification = new Notification('Ma Seconde Notification');
+        makeNotification("👋 Welcome back 👋");
+
     } else if (Notification.permission !== 'denied') {
       Notification.requestPermission((permission) => {
         if (permission === 'granted') {
-          const notification = new Notification('Ma Première Notification');
+            makeNotification("🎉🎉 Thank you for allowing notifications 🎉🎉");
         }
       });
     }

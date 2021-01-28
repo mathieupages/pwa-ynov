@@ -44,6 +44,7 @@ window.addEventListener('load', (e) => {
   initGallery();
   toggleInstallButton();
   toggleOfflineMessage(!navigator.onLine);
+  requestGrantNotification();
   addLoveWithPictureSubscription();
 });
 

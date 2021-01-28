@@ -9,10 +9,8 @@ function initGallery() {
 function makeGallery(paths) {
   paths.forEach((imagePath) => {
     const imgHolder = makeImageHolder(imagePath);
-
     const galleryImage = document.createElement('div');
     galleryImage.classList.add('gallery-image');
-
     galleryImage.append(imgHolder);
 
     document.getElementById('gallery').appendChild(galleryImage);
@@ -45,7 +43,7 @@ function makeImageHolder(imagePath) {
   aElement.innerHTML = `<img src="${tinyImagePath}" class="preview" loading="lazy" width="20" height="15" alt="preview"/>`;
 
   const likeButton = document.createElement('button');
-  likeButton.innerHTML = '♡';
+  likeButton.innerHTML = '❤️';
   likeButton.classList.add('img');
   likeButton.setAttribute('id', `${tinyImagePath}`);
   addLikedEvent(likeButton, tinyImagePath);
