@@ -19,12 +19,14 @@ webpush.setVapidDetails(
     privateVapidKey
   );
 
-app.use(express.static(__dirname + '/../client')); // replace to dist when production
+// app.use(express.static(__dirname + '/../client')); // replace to dist when production
 
 
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html');
-});
+// app.get('/', (req, res) => {
+//     res.sendFile(__dirname + '/index.html');
+// });
+
+app.use('/', express.static(__dirname+ '/../client'));
 
 app.get('/paths', (req, res) => {
     const data = JSON.stringify(jsonData.map(image => image.src));
