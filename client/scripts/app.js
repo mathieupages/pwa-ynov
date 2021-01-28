@@ -46,6 +46,7 @@ window.addEventListener('load', (e) => {
   toggleOfflineMessage(!navigator.onLine);
   requestGrantNotification();
   addLoveWithPictureSubscription();
+  buttonDLBehavior();
 });
 
 window.addEventListener('beforeinstallprompt', (e) => {

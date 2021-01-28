@@ -68,7 +68,7 @@ app.get('/favorite', (req, res) => {
 app.post('/add', (req,res) => {
   const img = req.body;
   jsonData.push({id : jsonData.length +1, src : img});
-  console.log("TOTO " + jsonData.toString);
+  console.log("TOTO " + jsonData);
   res.end();
 });
 app.use(function(err, req, res, next) {
