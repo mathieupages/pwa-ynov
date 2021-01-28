@@ -9,6 +9,8 @@ A sandbox repository during WebMobile class given in Ynov Toulouse Campus
 - [Jason Liebault](https://github.com/JasLieb)
 - [Mathieu Pages](https://github.com/mathieupages)
 - [Quentin Puel](https://github.com/Nummytincan)
+- [Nicolas Chataigneau](https://github.com/Chataigneau)
+- [Guillaume Navarro](https://github.com/Adrameleck)
 
 ## Setup
 
@@ -39,3 +41,11 @@ A sandbox repository during WebMobile class given in Ynov Toulouse Campus
 - Quentin Puel :  
 
     [git](https://github.com/Nummytincan/pwa-ynov) | [deploy](https://mystifying-colden-13071a.netlify.app/)
+
+- Nicolas Chataigneau :
+
+	[git](https://github.com/Chataigneau/pwa-ynov) | [deploy](https://gifted-neumann-297a8b.netlify.app/)
+	
+- Guillaume Navarro :
+
+	[git](https://github.com/Adrameleck/pwa-ynov) | [deploy](https://boring-leakey-e31ca2.netlify.app/)
