@@ -41,6 +41,10 @@ body {
     background-color: #080808;
     border: 1px solid whitesmoke;
 }
+#dlimg{
+    color: whitesmoke;
+    border: 1px solid whitesmoke;
+}
 
 #gallery::-webkit-scrollbar {
     display: none;
