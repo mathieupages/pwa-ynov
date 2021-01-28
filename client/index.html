@@ -1,47 +1,43 @@
 <!DOCTYPE html>
 <html lang="en-US">
-  <head>
-    <title>PWA Ynov</title>
-    <meta charset="UTF-8" />
-    <meta name="description" content="A sandbox app around PWA" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#317EFB" />
 
-    <link rel="apple-touch-icon" href="/assets/icons/icon192.png" />
-    <link rel="stylesheet" href="styles/style.css" />
-    <link rel="manifest" href="manifest.json" />
+<head>
+  <title>PWA Ynov</title>
+  <meta charset="UTF-8" />
+  <meta name="description" content="A sandbox app around PWA" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#317EFB" />
 
-    <script src="scripts/utils.js"></script>
-    <script src="scripts/notifications.js"></script>
-    <script src="scripts/image.js"></script>
-    <script src="scripts/app.js"></script>
-    <script src="assets/imgs/tiny/tinyImageDictionary.js"></script>
+  <link rel="apple-touch-icon" href="/assets/icons/icon192.png" />
+  <link rel="stylesheet" href="styles/style.css" />
+  <link rel="manifest" href="manifest.json" />
 
-    <script
-      async
-      src="https://cdn.jsdelivr.net/npm/pwacompat@2.0.9/pwacompat.min.js"
-      integrity="sha384-VcI6S+HIsE80FVM1jgbd6WDFhzKYA0PecD/LcIyMQpT4fMJdijBh0I7Iblaacawc"
-      crossorigin="anonymous"
-    ></script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/progressive-image.js/dist/progressive-image.css"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/progressive-image.js/dist/progressive-image.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.7.3/localforage.min.js"></script>
-  </head>
+  <script src="scripts/utils.js"></script>
+  <script src="scripts/notifications.js"></script>
+  <script src="scripts/image.js"></script>
+  <script src="scripts/app.js"></script>
+  <script src="assets/imgs/tiny/tinyImageDictionary.js"></script>
 
-  <body>
-    <div class="app-header">
-      <h1>Sandbox PWA Ynov</h1>
-    </div>
-    <div class="app-info">
-      <button id="install_button" type="button" value="Install">Install</button>
-      <h2 id="new-update-message" style="display: none">Your favorite gallery have a new version, Please reload !</h2>
-      <p id="offline-message" style="display: none">
-        You're now in offline mode
-      </p>
-    </div>
-    <div id="gallery"></div>
-  </body>
+  <script async src="https://cdn.jsdelivr.net/npm/pwacompat@2.0.9/pwacompat.min.js"
+    integrity="sha384-VcI6S+HIsE80FVM1jgbd6WDFhzKYA0PecD/LcIyMQpT4fMJdijBh0I7Iblaacawc"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/progressive-image.js/dist/progressive-image.css" />
+  <script src="https://cdn.jsdelivr.net/npm/progressive-image.js/dist/progressive-image.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.7.3/localforage.min.js"></script>
+</head>
+
+<body>
+  <div class="app-header">
+    <h1>Sandbox PWA Ynov</h1>
+  </div>
+  <div class="app-info">
+    <button id="install_button" type="button" value="Install">Install</button>
+    <h2 id="new-update-message" style="display: none">Your favorite gallery have a new version, Please reload !</h2>
+    <p id="offline-message" style="display: none">
+      You're now in offline mode
+    </p>
+  </div>
+  <div id="gallery"></div>
+</body>
+
 </html>

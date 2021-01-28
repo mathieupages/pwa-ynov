@@ -87,3 +87,31 @@ self.addEventListener('activate', (e) => {
     cleanObsoleteCache()
   );
 });
+
+self.addEventListener('sync', function (event) {
+  if (event.tag == 'favorite-sync') {
+    console.log("sync")
+    event.waitUntil(syncFavorite());
+  }
+});
+
+const files = ["/",
+ "/script.js", 
+ "https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.css",
+ "https://bulma.io/images/placeholders/1280x960.png",
+ "https://bulma.io/images/placeholders/96x96.png", 
+ "https://cdnjs.cloudflare.com/ajax/libs/localforage/1.7.3/localforage.min.js"
+];
+
+function syncFavorite() {
+  fetch(`http://localhost:3000/favorite?image=${encodeURIComponent(imagePath)}`)
+    .then(function (response) {
+      return response;
+    })
+    .then(function (text) {
+      console.log('Request successful', text);
+    })
+    .catch(function (error) {
+      console.log('Request failed', error);
+    });
+}

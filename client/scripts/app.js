@@ -22,6 +22,10 @@ function initServiceWorker() {
         console.log('Registration failed with ' + error);
       });
   }
+    navigator.serviceWorker.ready.then(function (swRegistration) {
+        console.log('favorite-sync')
+        return swRegistration.sync.register('favorite-sync')
+    })
 }
 
 function toggleOfflineMessage(isOffline) {
