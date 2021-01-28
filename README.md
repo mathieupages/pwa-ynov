@@ -8,6 +8,7 @@ A sandbox repository during WebMobile class given in Ynov Toulouse Campus
 
 - [Jason Liebault](https://github.com/JasLieb)
 - [Mathieu Pages](https://github.com/mathieupages)
+- [Quentin Puel](https://github.com/Nummytincan)
 
 ## Setup
 
@@ -34,3 +35,7 @@ A sandbox repository during WebMobile class given in Ynov Toulouse Campus
 - Mathieu Pages :  
 
     [git](https://github.com/mathieupages/pwa-ynov) | [deploy](https://elated-curran-5dab22.netlify.app/)
+
+- Quentin Puel :  
+
+    [git](https://github.com/Nummytincan/pwa-ynov) | [deploy](https://mystifying-colden-13071a.netlify.app/)
