@@ -27,6 +27,7 @@ function initServiceWorker() {
 function initBroadcastChannel() {
   const broadcast = new BroadcastChannel('channel-sw'); 
   broadcast.onmessage = (event) => {
+    if(document.readyState === "complete") {
     if (event.data && event.data.type === 'IMAGE_UPDATE') {
       initGallery();
       console.log("hello")
@@ -39,6 +40,7 @@ function initBroadcastChannel() {
       addLoveWithPictureSubscription();
       addUrlSubmitButtonEvent();
     }
+  }
   }
 }
 
