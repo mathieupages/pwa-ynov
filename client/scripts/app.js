@@ -22,10 +22,29 @@ function initServiceWorker() {
         console.log('Registration failed with ' + error);
       });
   }
-    navigator.serviceWorker.ready.then(function (swRegistration) {
-        console.log('favorite-sync')
-        return swRegistration.sync.register('favorite-sync')
-    })
+}
+
+function initBroadcastChannel() {
+  const broadcast = new BroadcastChannel('channel-sync-image'); 
+  broadcast.onmessage = (event) => {
+    if (event.data && event.data.type === 'IMAGE_UPDATE') {
+      initGallery();
+    }
+  }
+}
+
+
+function requestGrantBackgroundSync() {
+  navigator.serviceWorker.ready.then(function (swRegistration) {
+    navigator.permissions.query({name: 'background-sync'})
+    .then(status => {
+      console.log(status);
+      if(status.state === 'granted'){
+        swRegistration.sync.register('sync-image')
+        } 
+      })
+      .catch(console.error);
+  })
 }
 
 function toggleOfflineMessage(isOffline) {
@@ -45,6 +64,7 @@ function toggleInstallButton() {
 
 window.addEventListener('load', (e) => {
   initServiceWorker();
+  initBroadcastChannel();
   initGallery();
   toggleInstallButton();
   toggleOfflineMessage(!navigator.onLine);
@@ -78,5 +98,6 @@ window.addEventListener('online', (_event) => {
 
 window.addEventListener('offline', (_event) => {
   console.log('offline');
-  toggleOfflineMessage(true)
+  toggleOfflineMessage(true);
+  requestGrantBackgroundSync();
 });
