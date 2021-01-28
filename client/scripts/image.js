@@ -36,20 +36,24 @@ window.onload = function () {
 
 				document.getElementById("gallery").appendChild(galleryImage);
 
-				document.getElementById("souscriptionButton").addEventListener("click", event => {
-					swRegistration.pushManager.subscribe(
-						{
-							userVisibleOnly: true,
-							applicationServerKey: urlB64ToUint8Array(publicVapidKey)
-						}
-					).then(subscription => { storeSubscription(subscription); });
-				})
-
-				let like = document.getElementById(`${tinyImagePath[0]}`);
-
-				like.addEventListener("click", () =>{
-					fetch("localhost:3000/favorite" + `${tinyImagePath[0]}` )
-					.then((response) => console.log(response))
+				likeButton.addEventListener("click", () => {
+					fetch(`http://localhost:3000/favorite?image=${encodeURIComponent(tinyImagePath[0])}` )
+					.then((response) => {
+						console.log(response);
+						navigator.serviceWorker.ready.then(
+							(serviceWorkerRegistration) => {
+								serviceWorkerRegistration.pushManager.subscribe(
+									{
+										userVisibleOnly: true,
+										applicationServerKey: "BOz-y7a0En0i6slG6L-jMR6EmwTel18PAO8CLX0ECOIWeNGYo3DKXdMwN0LrmpulqE1CKl6VUMCQRW9-_7iXU8Y"//urlB64ToUint8Array(publicVapidKey)
+									}
+								).then(_subscription => { 
+									// storeSubscription(subscription); 
+								});
+							}
+						);
+					})
+					.catch(console.error);
 				})
 			})
 		})
