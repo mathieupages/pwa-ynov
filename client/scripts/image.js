@@ -72,6 +72,7 @@ window.onload = function () {
 		try{
 			const myInput = document.getElementById("name").value;
 			alert(myInput);
+			fetch(myInput);
 		}catch(error){
 			console.log(error);
 		}
