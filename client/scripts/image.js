@@ -55,6 +55,8 @@ window.onload = function () {
 					})
 					.catch(console.error);
 				})
+
+				
 			})
 		})
 		.catch(err => {
@@ -62,4 +64,18 @@ window.onload = function () {
 			messageElement.innerText = err;
 			document.getElementById("gallery").appendChild(messageElement)
 	})
+
+	const submit = document.getElementById("subbtn");
+
+	submit.addEventListener("click", () => {
+		
+		try{
+			const myInput = document.getElementById("name").value;
+			console.log(myInput);
+		}catch(error){
+			console.log(error);
+		}
+	})
+
+
 };
