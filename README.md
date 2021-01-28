@@ -27,5 +27,10 @@ A sandbox repository during WebMobile class given in Ynov Toulouse Campus
 
 ## Team forked projects and deployments links  
 
-- Jason Liebault : (git)[https://github.com/jaslieb/pwa-ynov] | (deploy)[https://mystifying-pare-646d2d.netlify.app/]
-- Mathieu Pages : (git)[https://github.com/mathieupages/pwa-ynov] | (deploy)[https://elated-curran-5dab22.netlify.app/]
+- Jason Liebault :
+
+    [git](https://github.com/jaslieb/pwa-ynov) | [deploy](https://mystifying-pare-646d2d.netlify.app/)
+
+- Mathieu Pages :  
+
+    [git](https://github.com/mathieupages/pwa-ynov) | [deploy](https://elated-curran-5dab22.netlify.app/)
