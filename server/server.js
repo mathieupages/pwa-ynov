@@ -26,14 +26,23 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
 });
 
+app.get('/paths', (req, res) => {
+    const data = JSON.stringify(jsonData.map(image => image.src));
+    res.send(data).end();
+});
+
 app.get('/images', (req, res) => {
     res.json(jsonData).end();
 });
 
 app.post('/sub', (req, res) => {
-    console.log(req.body);
     const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-    subs.push({ip, sub: req.body});
+    const indexFound = subs.find(sub => sub.ip == ip);
+    if(indexFound > 0) {
+        subs[indexFound].sub = sub;
+    } else {
+        subs.push({ip, sub: req.body});
+    }
     res.end();
 });
 
