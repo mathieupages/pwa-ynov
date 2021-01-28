@@ -17,6 +17,15 @@ function initServiceWorker() {
             }
           };
         };
+
+        initBroadcastChannel();
+        console.log("hello")
+        initGallery();
+        toggleInstallButton();
+        toggleOfflineMessage(!navigator.onLine);
+        requestGrantNotification();
+        addLoveWithPictureSubscription();
+        addUrlSubmitButtonEvent();
       })
       .catch(function (error) {
         console.log('Registration failed with ' + error);
@@ -28,7 +37,9 @@ function initBroadcastChannel() {
   const broadcast = new BroadcastChannel('channel-sync-image'); 
   broadcast.onmessage = (event) => {
     if (event.data && event.data.type === 'IMAGE_UPDATE') {
+      console.log("hello")
       initGallery();
+      console.log("hello")
     }
   }
 }
@@ -64,13 +75,14 @@ function toggleInstallButton() {
 
 window.addEventListener('load', (e) => {
   initServiceWorker();
-  initBroadcastChannel();
-  initGallery();
-  toggleInstallButton();
-  toggleOfflineMessage(!navigator.onLine);
-  requestGrantNotification();
-  addLoveWithPictureSubscription();
-  addUrlSubmitButtonEvent();
+  // initBroadcastChannel();
+  // console.log("hello")
+  // initGallery();
+  // toggleInstallButton();
+  // toggleOfflineMessage(!navigator.onLine);
+  // requestGrantNotification();
+  // addLoveWithPictureSubscription();
+  // addUrlSubmitButtonEvent();
 });
 
 window.addEventListener('beforeinstallprompt', (e) => {
