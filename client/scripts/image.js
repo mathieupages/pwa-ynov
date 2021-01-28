@@ -7,13 +7,15 @@ function initGallery() {
 }
 
 function makeGallery(paths) {
+  const gallery = document.getElementById('gallery');
+  gallery.innerHTML = '';
   paths.forEach((imagePath) => {
     const imgHolder = makeImageHolder(imagePath);
     const galleryImage = document.createElement('div');
     galleryImage.classList.add('gallery-image');
     galleryImage.append(imgHolder);
 
-    document.getElementById('gallery').appendChild(galleryImage);
+    gallery.appendChild(galleryImage);
   });
 }
 
@@ -36,6 +38,9 @@ function makeImageHolder(imagePath) {
   aElement.setAttribute('href', imagePath);
 
   const tinyImagePath = tinyImagesPaths.filter((tinyPath) => {
+    if( !imagePath || !imagePath.includes("/")) {
+      return false;
+    }
     const splittedImagePath = imagePath.split('/');
     const imageName = splittedImagePath[splittedImagePath.length - 1];
     return tinyPath.includes(imageName);
@@ -56,19 +61,25 @@ function makeImageHolder(imagePath) {
   imgHolder.append(likeButton);
   return imgHolder;
 }
-function buttonDLBehavior(){
+function addUrlSubmitButtonEvent(){
 	const submit = document.getElementById("subbtn");
 
 	submit.addEventListener("click", () => {
 		
 		
 		const myInput = document.getElementById("name").value;
-		alert(myInput);
+	
 		var req = new XMLHttpRequest();
 		
 		req.open('POST', "http://localhost:3000/add", true);
-		req.setRequestHeader("Access-Control-Allow-Headers","no-cors");
-		req.send(myInput);
+    req.setRequestHeader("Access-Control-Allow-Headers","no-cors");
+    req.setRequestHeader('Content-Type', 'application/json');
+    req.onreadystatechange = function () {
+      if(req.readyState === 4 && req.status === 200) {
+        initGallery();
+      }
+    };
+		req.send(JSON.stringify({src : myInput}));
 			
 		
 	})
