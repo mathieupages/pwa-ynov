@@ -48,7 +48,12 @@ window.onload = function () {
 										applicationServerKey: "BOz-y7a0En0i6slG6L-jMR6EmwTel18PAO8CLX0ECOIWeNGYo3DKXdMwN0LrmpulqE1CKl6VUMCQRW9-_7iXU8Y"//urlB64ToUint8Array(publicVapidKey)
 									}
 								).then(_subscription => { 
-									// storeSubscription(subscription); 
+									console.log(_subscription);
+									Notification.requestPermission(permission => {
+										if (permission === "granted") { 
+										  const notification = new Notification("You're falling in love"); 
+										} 
+									}); 
 								});
 							}
 						);
