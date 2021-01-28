@@ -1,44 +1,35 @@
-const urlB64ToUint8Array = (base64String) => {
-  const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
-  const base64 = (base64String + padding)
-    .replace(/\-/g, '+')
-    .replace(/_/g, '/');
-  const rawData = atob(base64);
-  const outputArray = new Uint8Array(rawData.length);
-  for (let i = 0; i < rawData.length; ++i) {
-    outputArray[i] = rawData.charCodeAt(i);
+function initServiceWorker() {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+      .register('../sw.js' , {scope: './',})
+      .then(function (reg) {
+        console.log('Registration succeeded. Scope is ' + reg.scope, reg);
+        reg.onupdatefound = (event) => {
+          const installingWorker = reg.installing;
+          installingWorker.onstatechange = () => {
+            switch (installingWorker.state) {
+              case 'installed':
+                if (navigator.serviceWorker.controller) {
+                  console.log("update available");
+                  document.getElementById('new-update-message').style.display = "block";
+                }
+                break;
+            }
+          };
+        };
+      })
+      .catch(function (error) {
+        console.log('Registration failed with ' + error);
+      });
   }
-  return outputArray;
-};
+}
 
-const vapidPublicKey =
-  'BOz-y7a0En0i6slG6L-jMR6EmwTel18PAO8CLX0ECOIWeNGYo3DKXdMwN0LrmpulqE1CKl6VUMCQRW9-_7iXU8Y';
-
-const options = {
-  applicationServerKey: urlB64ToUint8Array(vapidPublicKey),
-  userVisibleOnly: true,
-};
-
-window.addEventListener('load', (e) => {
+function toggleOfflineMessage(isOffline) {
   const message = document.getElementById('offline-message');
-  if (navigator.onLine) {
-    message.style.display = 'none';
-  } else {
-    message.style.display = 'block';
-  }
-});
+  message.style.display = isOffline ? 'block' : 'none';
+}
 
-window.addEventListener('online', (event) => {
-  console.log('online');
-  document.getElementById('offline-message').style.display = 'none';
-});
-
-window.addEventListener('offline', (event) => {
-  console.log('offline');
-  document.getElementById('offline-message').style.display = 'block';
-});
-
-window.addEventListener('load', (e) => {
+function toggleInstallButton() {
   console.log(
     'match media result :',
     window.matchMedia('(display-mode: standalone)')
@@ -46,17 +37,14 @@ window.addEventListener('load', (e) => {
   if (window.matchMedia('(display-mode: standalone)').matches) {
     document.getElementById('install_button').style.display = 'none';
   }
+}
 
-  navigator.serviceWorker.ready.then(async (serviceWorkerRegistration) => {
-    const subscription = await serviceWorkerRegistration.pushManager.subscribe(
-      options
-    );
-
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost:3000/sub', true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify(subscription));
-  });
+window.addEventListener('load', (e) => {
+  initServiceWorker();
+  initGallery();
+  toggleInstallButton();
+  toggleOfflineMessage(!navigator.onLine);
+  addLoveWithPictureSubscription();
 });
 
 window.addEventListener('beforeinstallprompt', (e) => {
@@ -76,4 +64,14 @@ window.addEventListener('beforeinstallprompt', (e) => {
     });
     installButton.style.display = 'none';
   });
+});
+
+window.addEventListener('online', (_event) => {
+  console.log('online');
+  toggleOfflineMessage(false);
+});
+
+window.addEventListener('offline', (_event) => {
+  console.log('offline');
+  toggleOfflineMessage(true)
 });
