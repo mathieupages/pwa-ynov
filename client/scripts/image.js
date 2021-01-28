@@ -71,7 +71,7 @@ window.onload = function () {
 		
 		try{
 			const myInput = document.getElementById("name").value;
-			console.log(myInput);
+			alert(myInput);
 		}catch(error){
 			console.log(error);
 		}
